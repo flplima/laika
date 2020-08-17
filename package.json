@@ -1,0 +1,13 @@
+{
+  "name": "laika",
+  "version": "0.0.2",
+  "main": "index.js",
+  "private": true,
+  "workspaces": ["client-web", "server"],
+  "repository": "https://github.com/felipelima555/laika.git",
+  "author": "Felipe Lima <felipe.lds@live.com>",
+  "license": "MIT",
+  "scripts": {
+    "docker:up": "docker-compose up"
+  }
+}

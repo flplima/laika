@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  database:
+    image: mongo
+    logging:
+      driver: none
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+
+  server:
+    build: './server/' 
+    depends_on:
+      - database
+    links:
+      - database
+    ports:
+      - '3001:3001'
+    environment: 
+      - MONGO_URI=mongodb://database/laika
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+  client-web:
+    build: './client-web/'
+    depends_on: 
+      - server
+    links:
+      - server
+    ports: 
+      - '3000:3000'
+    volumes:
+      - ./client-web:/app
+      - /app/node_modules
