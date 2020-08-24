@@ -1,8 +1,14 @@
 # Laika
 
-A Laika é uma assitente pessoal open-source feita para desenvolvedores, pensada para ser fácil de ser implantada e adaptada.
+Laika is an open-source personal assistant made for developers, designed to be easy to deploy and adapt.
 
-Você pode ensinar a Laika a executar funções em resposta a suas mensagens. Dentro das funções a Laika pode fazer requisições a APIs externas, extrair informações das suas mensagens e salvar no banco de dados MongoDB integrado, ou simplesmente responder qualquer texto que você quiser.
+**[Leia-me em português](https://github.com/felipelima555/laika/blob/master/README_pt-BR.md)**
+
+Basically, using dependency injection and some decorators, it is extremely simple to add new features to Laika. The ```@MessageHandler``` decorator injects the metadata that teach Laika how to respond to your messages.
+
+<img src="https://user-images.githubusercontent.com/20775579/90994643-c10a8e80-e58f-11ea-9949-ac5594e09fc4.png" />
+
+<img src="https://user-images.githubusercontent.com/20775579/90994647-c7990600-e58f-11ea-898f-c90aa748f221.gif" />
 
 ## Como começar
 
@@ -13,13 +19,13 @@ yarn install
 docker-compose up
 ```
 
-O Docker Compose irá montar automaticamente todo o ambiente que a Laika precisa para funcionar, contendo o backend (NestJS), o frontend (React) e o servidor de banco de dados (MongoDB). Para mais informações veja o [docker-compose.yml](https://github.com/felipelima555/laika/blob/master/docker-compose.yml).
+Docker Compose will automatically set up the entire environment that Laika needs to work, containing the backend (NestJS), the frontend (React) and the database server (MongoDB). For more information see [docker-compose.yml](https://github.com/felipelima555/laika/blob/master/docker-compose.yml).
 
-OBS.: Se você preferir não usar Docker, pode iniciar diretamente o backend com o comando `yarn start:dev` (no diretório server). Para o frontend, abra outro terminal e execute `yarn start` (no diretório client-web). Nesse caso, você precisará ter um servidor MongoDB ativo em localhost:27017.
+**After starting the environment, open your browser, go to http://localhost:3000 and say "Hello" to Laika!**
 
-**Após iniciar o ambiente, abra seu navegador, acesse http://localhost:3000 e diga "Hello" para a Laika!**
+*NOTE: If you prefer not to use Docker, you can directly start the backend with the command `yarn start:dev` (in the server directory). For the frontend, open another terminal and run `yarn start` (in the client-web directory). In this case, you will need to have a MongoDB server active at localhost:27017.*
 
-Veja algumas coisas que você pode dizer para a Laika:
+Here are some things you can say to Laika:
 
 - Who are you?
 - How are you?
@@ -32,24 +38,24 @@ Veja algumas coisas que você pode dizer para a Laika:
 ## Tecnologias usadas
 
 ### Frontent (React)
-- **styled-components** para estilização
-- **socket-io.client** para enviar/receber mensagens do servidor
-- **React Context API** para gerenciamento de estado.
+- **styled-components** for styling
+- **socket-io.client** to send / receive messages from the server
+- **React Context API** for global state management.
 
 ### Backend (NestJS)
-- **socket-io** para a comunicação com o frontend
-- **node-nlp** para o processamento de linguagem natural
-- **mongoose** para o banco de dados MongoDB
-- **reflect-metadata** para adicionar e obter metadados usando decorators personalizados
-- **rxjs** para stream de mensagens com Observables
+- **socket-io** for communication with the frontend
+- **node-nlp** for natural language processing
+- **mongoose** for the MongoDB database
+- **reflect-metadata** to add and get metadata using custom decorators
+- **rxjs** to stream messages with Observables
 
-O backend pode ser entendido através dos dois módulos principais:
+The backend can be understood through the two main modules:
 
-- **src/core** - Aqui ficam o processamento de mensagens e o treinamento do algoritmo de inteligência artificial. Também ficam os decorators que serão usados no diretório de skills.
-- **src/skills** - Aqui ficam os módulos que informam a Laika o que fazer. Usando o decorator ```@MessageHandler``` que é exportado da pasta src/core, a função será coletada pelo core e usada no processamento das mensagens.
+- **src/core** - Here are the message processing and training of the artificial intelligence algorithm. There are also decorators that will be used in the skills directory.
+- **src/skills** - Here are the modules that tell Laika what to do. Using the decorator ```@MessageHandler``` which is exported from the src/core folder, the function will be collected by the core and used in the processing of messages.
 
-## Adicione novas skills
-A parte mais legal da Laika é que é extremamente fácil adicionar novas skills. Basta usar o sistema de modules/services do NestJS. 
+## Add new skills
+The coolest part about Laika is that it’s extremely easy to add new skills. Just use the NestJS modules/services system. Start with the commands below:
 
 ```bash
 cd server
@@ -57,9 +63,38 @@ yarn nest generate module skills/my-awesome-skill
 yarn nest generate service skills/my-awesome-skill
 ```
 
-O NestJS irá criar o diretório ```skills/my-awesome-skill```, contendo um *module* e um *service*, e irá injetar o novo módulo nas dependências do ```skills.module.ts```. Tudo o que precisamos fazer agora é editar o nosso arquivo `my-awesome-skill.service.ts`.
+NestJS will create the directory ```skills/my-awesome-skill```, containing a *module* and a *service*, and will inject the new module into the facilities of ```skills.module.ts```. All we need to do now is edit our `my-awesome-skill.service.ts` file.
 
-Comece copiando e colando o exemplo abaixo no seu arquivo `my-awesome-skill.service.ts`:
+Now let's import the @MessageHandler decorator from ```src/core``` to teach Laika a new function. Copy and paste the example below into your `my-awesome-skill.service.ts` file:
+
+```typescript
+import { Injectable } from '@nestjs/common';
+
+import { MessageHandler } from 'src/core';
+
+@Injectable()
+export class MyAwesomeSkillService {
+
+  /**
+   * Example 1
+   * The @MessageHandler decorator is used to inform the core
+   * to add the phrase and that function to message processing.
+   * In that case, when you say "this is a test",
+   * Laika will answer "It works!"
+   */
+  @MessageHandler('This is a test')
+  testing() {
+    return `It works!`;
+  }
+
+}
+```
+
+Save the file and the server will automatically restart, learning the new features. Then, return to the browser and test the new function.
+
+![test](https://user-images.githubusercontent.com/20775579/90997595-5ad63980-e598-11ea-9b57-41f9f069b70d.gif)
+
+You can add multiple functions in the same class, just use the @MessageHandler decorator and Laika will learn them. Try copying and pasting the code below into your ```my-awesome-skill.service``` for more examples.
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -72,27 +107,27 @@ import { MessageHandler, MessageText, TrimEntity } from 'src/core';
 export class MyAwesomeSkillService {
 
   /**
-   * Exemplo 1
-   * O decorator @MessageHandler é usado para informar ao core
-   * para adicionar a frase e essa função ao processamento de mensagens.
-   * Nesse caso, quando você disser "this is an test",
-   * a Laika irá responder "It's works!"
+   * Example 1
+   * The @MessageHandler decorator is used to inform the core
+   * to add the phrase and that function to message processing.
+   * In that case, when you say "this is a test",
+   * Laika will answer "It works!"
    */
-  @MessageHandler('This is an test')
+  @MessageHandler('This is a test')
   testing() {
-    return `It's works!`;
+    return `It works!`;
   }
 
   /**
-   * Exemplo 2
-   * Você pode treinar várias frases para uma mesma função.
+   * Example 2
+   * You can train multiple sentences for the same function.
    */
   @MessageHandler(['Say my message', 'Repeat my message'])
   repeatMessage(
-    // Use o decorator @MessageText para injetar sua própria mensagem
+    // Use the @MessageText decorator to inject your own message
     @MessageText() myMessage: string,
   ) {
-    // Retornando um array, uma resposta aleatória será escolhida.
+    // Returning an array, a random response will be chosen.
     return [
       `You said: ${myMessage}`,
       `Your message was "${myMessage}"`,
@@ -100,9 +135,9 @@ export class MyAwesomeSkillService {
   }
 
   /**
-   * Exemplo 3
-   * Você pode retornar um objeto contendo o texto e uma função
-   * para criar diálogos mais complexos
+   * Example 3
+   * You can return an object containing the text and a function
+   * to create more complex dialogues
    */
   @MessageHandler('Say my name')
   sayMyName() {
@@ -113,10 +148,10 @@ export class MyAwesomeSkillService {
   }
 
   /**
-   * Exemplo 4
-   * Este é um exemplo um pouco mais complexo
-   * Nesse caso, se você disser "Count from 1 to 10" a Laika irá
-   * responder com um stream de 10 mensagens.
+   * Example 4
+   * This is a slightly more complex example
+   * In this case, if you say "Count from 1 to 10" Laika will
+   * reply with a stream of 10 messages.
    */
   @MessageHandler('Count from %n1% to %n2%')
   count(
@@ -129,31 +164,31 @@ export class MyAwesomeSkillService {
     const response$ = range(fromNumber, 1 + toNumber - fromNumber)
       .pipe( concatMap(n => of(n).pipe(delay(500))) );
 
-    // Retorne um Observable<string> para criar um stream de mensagens
+    // Return an Observable <string> to create a message stream
     return response$;
   }
 
 }
 ```
 
-Salve o arquivo e o servidor irá reiniciar automaticamente, aprendendo os novos recursos. Depois, volte ao navegador e teste algumas das frases.
+Save the file and the server will automatically restart, learning the new features. Then, return to the browser and test some of the phrases.
 
-**Agora você está pronto para começar a criar sua própria assistente pessoal!**
+**Now you're ready to start creating your own personal assistant!**
 
-Dê uma olhada nos outros diretórios em src/skills para mais exemplos.
+Take a look at the other directories in src / skills for more examples.
 
-## Contribua
-A Laika ainda está em desenvolvimento e toda contribuição é bem-vinda! Abaixo segue uma lista com o que eu gostaria de melhorar:
+## Contributing
+Laika is still in development and any contribution is welcome! Below is a list of what I would like to improve:
 
 ## TODO
-- Exibir mensagens antigas ao abrir o app
-- Fala para texto e texto para fala
-- Docker Swarm para deploy
-- Tratamento de exceções
-- Testes automatizados
-- Hot word (ativar com o comando de voz "Hey Laika!")
-- Transformar o app React em um progressive web app (PWA)
-- Notificações de novas mensagens, mesmo quando o app estiver fora de foco
+- Show old messages when opening the app
+- Speech to text and text to speech
+- Docker Swarm for deploy
+- Exception handling
+- Automated testing
+- Hot word (activate with the voice command "Hey Laika!")
+- Transform the React app into a progressive web app (PWA)
+- Notifications of new messages, even when the app is out of focus
 
-## Autor
-Meu nome é **Felipe Lima** e você pode entrar em contato comigo pelo meu [LinkedIn](https://www.linkedin.com/in/felipelimadasilva/).
+## Author
+I'm **Felipe Lima** and you can contact me through my [LinkedIn](https://www.linkedin.com/in/felipelimadasilva/).
