@@ -10,7 +10,7 @@ Basically, using dependency injection and some decorators, it is extremely simpl
 
 <img src="https://user-images.githubusercontent.com/20775579/90994647-c7990600-e58f-11ea-898f-c90aa748f221.gif" />
 
-## Como começar
+## Getting started 
 
 ```bash
 git clone https://github.com/felipelima555/laika
@@ -35,7 +35,7 @@ Here are some things you can say to Laika:
 - Show all my notes
 - Show notes about milk
 
-## Tecnologias usadas
+## Technologies
 
 ### Frontent (React)
 - **styled-components** for styling
