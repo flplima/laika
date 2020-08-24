@@ -155,7 +155,7 @@ export class MyAwesomeSkillService {
    */
   @MessageHandler('Count from %n1% to %n2%')
   count(
-    // Você pode extrair dados com o decorator @TrimEntity
+    // You can extract data with the @TrimEntity decorator
     @TrimEntity('n1', { between: ['from', 'to'] }) n1?: string,
     @TrimEntity('n2', { after: 'to' }) n2?: string,
   ) {
