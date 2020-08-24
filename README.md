@@ -19,11 +19,11 @@ yarn install
 docker-compose up
 ```
 
-Docker Compose will automatically set up the entire environment that Laika needs to work, containing the backend (NestJS), the frontend (React) and the database server (MongoDB). For more information see [docker-compose.yml](https://github.com/felipelima555/laika/blob/master/docker-compose.yml).
+Docker Compose will automatically set up the entire environment Laika needs to work, containing backend (NestJS), frontend (React) and the database server (MongoDB). For more information see [docker-compose.yml](https://github.com/felipelima555/laika/blob/master/docker-compose.yml).
 
 **After starting the environment, open your browser, go to http://localhost:3000 and say "Hello" to Laika!**
 
-*NOTE: If you prefer not to use Docker, you can directly start the backend with the command `yarn start:dev` (in the server directory). For the frontend, open another terminal and run `yarn start` (in the client-web directory). In this case, you will need to have a MongoDB server active at localhost:27017.*
+*NOTE: If you prefer not using Docker, you can directly start the backend with the command `yarn start:dev` (in the server directory). For the frontend, open another terminal and run `yarn start` (in the client-web directory). In this case, you will need to have a MongoDB server active at localhost:27017.*
 
 Here are some things you can say to Laika:
 
@@ -31,7 +31,7 @@ Here are some things you can say to Laika:
 - How are you?
 - Tell me a joke
 - I'm bored, tell me what to do
-- Save the note buy milk
+- Save note buy milk 
 - Show all my notes
 - Show notes about milk
 
@@ -45,13 +45,13 @@ Here are some things you can say to Laika:
 ### Backend (NestJS)
 - **socket-io** for communication with the frontend
 - **node-nlp** for natural language processing
-- **mongoose** for the MongoDB database
+- **mongoose** for MongoDB database
 - **reflect-metadata** to add and get metadata using custom decorators
 - **rxjs** to stream messages with Observables
 
-The backend can be understood through the two main modules:
+The backend can be understood through two main modules:
 
-- **src/core** - Here are the message processing and training of the artificial intelligence algorithm. There are also decorators that will be used in the skills directory.
+- **src/core** - Here are the message processing and the artificial intelligence's algorithm  training. There are also decorators that will be used in the skills directory.
 - **src/skills** - Here are the modules that tell Laika what to do. Using the decorator ```@MessageHandler``` which is exported from the src/core folder, the function will be collected by the core and used in the processing of messages.
 
 ## Add new skills
@@ -63,9 +63,9 @@ yarn nest generate module skills/my-awesome-skill
 yarn nest generate service skills/my-awesome-skill
 ```
 
-NestJS will create the directory ```skills/my-awesome-skill```, containing a *module* and a *service*, and will inject the new module into the facilities of ```skills.module.ts```. All we need to do now is edit our `my-awesome-skill.service.ts` file.
+NestJS will create the directory ```skills/my-awesome-skill```, containing a *module* and a *service*, and will inject the new module into the facilities of ```skills.module.ts```. All we need to do after is to edit our `my-awesome-skill.service.ts` file.
 
-Now let's import the @MessageHandler decorator from ```src/core``` to teach Laika a new function. Copy and paste the example below into your `my-awesome-skill.service.ts` file:
+Lastly, import the @MessageHandler decorator from ```src/core``` to teach Laika a new function. Copy and paste the example below into your `my-awesome-skill.service.ts` file:
 
 ```typescript
 import { Injectable } from '@nestjs/common';
@@ -187,7 +187,7 @@ Laika is still in development and any contribution is welcome! Below is a list o
 - Exception handling
 - Automated testing
 - Hot word (activate with the voice command "Hey Laika!")
-- Transform the React app into a progressive web app (PWA)
+- Transform React app into a progressive web app (PWA)
 - Notifications of new messages, even when the app is out of focus
 
 ## Author
