@@ -1,8 +1,5 @@
 import { WebSocketGateway, SubscribeMessage, MessageBody, WebSocketServer } from "@nestjs/websockets";
 import { Server } from "socket.io";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { Message } from "./message.schema";
 import { CoreService } from "../core.service";
 import { MessagesService } from "./messages.service";
 import { Inject } from "@nestjs/common";
