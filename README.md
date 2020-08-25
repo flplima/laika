@@ -1,10 +1,10 @@
 # Laika
 
-Laika is an open-source personal assistant made for developers, designed to be easy to deploy and adapt.
+Laika is an open-source personal assistant made for developers, designed to be easy to adapt.
 
 **[Leia-me em português](https://github.com/felipelima555/laika/blob/master/README_pt-BR.md)**
 
-Basically, using dependency injection and some decorators, it is extremely simple to add new features to Laika. The ```@MessageHandler``` decorator injects the metadata that teach Laika how to respond to your messages.
+It's extremely simple to add skills to Laika. Just use decorator ```@MessageHandler``` in your methods, which will inject the metadata that teach Laika how to respond to your messages.
 
 <img src="https://user-images.githubusercontent.com/20775579/90994643-c10a8e80-e58f-11ea-9949-ac5594e09fc4.png" />
 
@@ -52,7 +52,7 @@ Here are some things you can say to Laika:
 The backend can be understood through two main modules:
 
 - **src/core** - Here are the message processing and the artificial intelligence's algorithm  training. There are also decorators that will be used in the skills directory.
-- **src/skills** - Here are the modules that tell Laika what to do. Using the decorator ```@MessageHandler``` which is exported from the src/core folder, the function will be collected by the core and used in the processing of messages.
+- **src/skills** - Here are the modules that tell Laika what to do. Using the decorator ```@MessageHandler``` which is exported from the src/core folder, the function will be collected by the core and used in the processing of messages. **Add your own modules here.**
 
 ## Add new skills
 The coolest part about Laika is that it’s extremely easy to add new skills. Just use the NestJS modules/services system. Start with the commands below:
