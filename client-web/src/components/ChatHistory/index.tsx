@@ -8,8 +8,8 @@ const ChatHistory: React.FC = () => {
 
   return (
     <MessagesList>
-      {messages.map((message: any, i: number) => (
-        <Message key={i} fromUser={message.fromUser}>
+      {messages.map(message => (
+        <Message key={message._id} fromUser={message.fromUser}>
           <p>
             {message.text}
           </p>

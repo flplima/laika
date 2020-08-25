@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import socket from '../services/socket';
+import { Message } from '../types';
 
 interface ChatContextType {
-  messages: any[];
-  sendMessage: (message: any) => void;
+  messages: Message[];
+  sendMessage: (text: string) => void;
 }
 
 export const ChatContext = React.createContext<ChatContextType>(
@@ -11,9 +12,9 @@ export const ChatContext = React.createContext<ChatContextType>(
 );
 
 export const ChatContextProvider: React.FC = ({ children }) => {
-  const [ messages, setMessages ] = useState<any[]>([]);
+  const [ messages, setMessages ] = useState<Message[]>([]);
 
-  const appendMessage = (message: any) => {
+  const appendMessage = (message: Message) => {
     setMessages(state => [ message, ...state ]);
   };
   

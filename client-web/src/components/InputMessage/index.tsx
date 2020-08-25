@@ -5,13 +5,13 @@ import { ChatContext } from '../../contexts/ChatContext';
 const InputMessage: React.FC = () => {
   const { sendMessage } = useContext(ChatContext);
   const [ text, setText ] = useState('');
-  const inputRef = useRef<any>();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const onChange = (e: any) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
 
-  const sendOnEnter = (e: any) => {
+  const sendOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       e.preventDefault();
       sendAndReset();
