@@ -60,6 +60,14 @@ The backend can be understood through two main modules:
 
 Laika is still in development and any contribution is welcome! Below is a list of what I would like to improve:
 
+Laika is still in development and any contribution is welcome! Here's how you can contribute:
+
+- Fork this repository and create your branch.
+  - Example: feature/my-awesome-feature or fix/annoying-bug;
+- Run `yarn install` in the root directory of your repository;
+- Make your changes, example, add new skills, fix a bug, etc...
+- Make a pull request
+
 ## TODO
 
 - Show old messages when opening the app
