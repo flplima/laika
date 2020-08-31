@@ -56,6 +56,11 @@ The backend can be understood through two main modules:
 - **src/core** - Here are the message processing and the artificial intelligence's algorithm training. There are also decorators that will be used in the skills directory.
 - **src/skills** - Here are the modules that tell Laika what to do. Using the decorator `@MessageHandler` which is exported from the src/core folder, the function will be collected by the core and used in the processing of messages. **Add your own modules here.**
 
+## Learn more
+
+- [See how Laika works](https://github.com/flplima/laika/blob/master/docs/how-it-works.md)
+- [See how to add your own skills](https://github.com/flplima/laika/blob/master/docs/add-new-skills.md)
+
 ## Contributing
 
 Laika is still in development and any contribution is welcome! Below is a list of what I would like to improve:
