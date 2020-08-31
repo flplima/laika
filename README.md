@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/20775579/90994647-c7990600-e58f-11ea-898f-c90aa748f221.gif" />
+
 # Laika
 
 Laika is an open-source personal assistant made for developers, designed to be easy to adapt.
@@ -7,8 +9,6 @@ Laika is an open-source personal assistant made for developers, designed to be e
 It's extremely simple to add skills to Laika. Just use decorator `@MessageHandler` in your methods, which will inject the metadata that teach Laika how to respond to your messages.
 
 <img src="https://user-images.githubusercontent.com/20775579/90994643-c10a8e80-e58f-11ea-9949-ac5594e09fc4.png" />
-
-<img src="https://user-images.githubusercontent.com/20775579/90994647-c7990600-e58f-11ea-898f-c90aa748f221.gif" />
 
 ## Getting started
 

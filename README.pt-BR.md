@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/20775579/90994647-c7990600-e58f-11ea-898f-c90aa748f221.gif" />
+
 # Laika
 
 A Laika é uma assitente pessoal open-source feita para desenvolvedores, pensada para ser fácil de ser adaptada.
@@ -7,8 +9,6 @@ A Laika é uma assitente pessoal open-source feita para desenvolvedores, pensada
 É extremamente simples adicionar novas funcionalidades à Laika. Basta usar o decorator `@MessageHandler`, que irá injetar os metadados que ensinam a Laika como responder as suas mensagens.
 
 <img src="https://user-images.githubusercontent.com/20775579/90994643-c10a8e80-e58f-11ea-9949-ac5594e09fc4.png" />
-
-<img src="https://user-images.githubusercontent.com/20775579/90994647-c7990600-e58f-11ea-898f-c90aa748f221.gif" />
 
 ## Como começar
 
