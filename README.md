@@ -63,8 +63,6 @@ The backend can be understood through two main modules:
 
 ## Contributing
 
-Laika is still in development and any contribution is welcome! Below is a list of what I would like to improve:
-
 Laika is still in development and any contribution is welcome! Here's how you can contribute:
 
 - Fork this repository and create your branch.
