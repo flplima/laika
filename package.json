@@ -3,8 +3,11 @@
   "version": "0.0.2",
   "main": "index.js",
   "private": true,
-  "workspaces": ["client-web", "server"],
-  "repository": "https://github.com/felipelima555/laika.git",
+  "workspaces": [
+    "client-web",
+    "server"
+  ],
+  "repository": "https://github.com/flplima/laika.git",
   "author": "Felipe Lima <felipe.lds@live.com>",
   "license": "MIT",
   "scripts": {

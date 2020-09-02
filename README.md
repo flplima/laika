@@ -4,7 +4,7 @@
 
 Laika is an open-source personal assistant made for developers, designed to be easy to adapt.
 
-**[Leia-me em português](https://github.com/felipelima555/laika/blob/master/README.pt-BR.md)**
+**[Leia-me em português](https://github.com/flplima/laika/blob/master/README.pt-BR.md)**
 
 It's extremely simple to add skills to Laika. Just use decorator `@MessageHandler` in your methods, which will inject the metadata that teach Laika how to respond to your messages.
 
@@ -13,13 +13,13 @@ It's extremely simple to add skills to Laika. Just use decorator `@MessageHandle
 ## Getting started
 
 ```bash
-git clone https://github.com/felipelima555/laika
+git clone https://github.com/flplima/laika
 cd laika
 yarn install
 docker-compose up
 ```
 
-Docker Compose will automatically set up the entire environment Laika needs to work, containing backend (NestJS), frontend (React) and the database server (MongoDB). For more information see [docker-compose.yml](https://github.com/felipelima555/laika/blob/master/docker-compose.yml).
+Docker Compose will automatically set up the entire environment Laika needs to work, containing backend (NestJS), frontend (React) and the database server (MongoDB). For more information see [docker-compose.yml](https://github.com/flplima/laika/blob/master/docker-compose.yml).
 
 **After starting the environment, open your browser, go to http://localhost:3000 and say "Hello" to Laika!**
 
